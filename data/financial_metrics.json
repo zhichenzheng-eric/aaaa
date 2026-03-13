@@ -1,0 +1,26 @@
+{
+    "Tencent": {
+        "Gross Margin": 0.5549,
+        "Net Margin": 0.2986,
+        "ROE": 0.1983,
+        "Debt-to-Asset Ratio": 0.2451
+    },
+    "Google": {
+        "Gross Margin": 0.5965,
+        "Net Margin": 0.3281,
+        "ROE": 0.3571,
+        "Debt-to-Asset Ratio": 0.1389
+    },
+    "Meta": {
+        "Gross Margin": 0.82,
+        "Net Margin": 0.3008,
+        "ROE": 0.3024,
+        "Debt-to-Asset Ratio": 0.2814
+    },
+    "Microsoft": {
+        "Gross Margin": 0.6859,
+        "Net Margin": 0.3904,
+        "ROE": 0.3439,
+        "Debt-to-Asset Ratio": 0.2398
+    }
+}

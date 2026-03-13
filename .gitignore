@@ -1,0 +1,19 @@
+# Streamlit / IDE
+.streamlit/
+.vscode/
+.idea/
+
+# Python virtual environment and caching
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+.env
+
+# MacOS
+.DS_Store
+
+# Static generated files (optional, comment out if you want to upload generated charts/data)
+# data/
+# charts/
