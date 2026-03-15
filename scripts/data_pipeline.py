@@ -73,7 +73,7 @@ def fetch_financial_data():
 
 def generate_radar_chart(data):
     print("Generating Radar Chart...")
-    categories = ['Gross Margin', 'Net Margin', 'ROE', 'Debt-to-Asset Ratio']
+    categories = ['毛利率 (Gross Margin)', '净利率 (Net Margin)', '净资产收益率 (ROE)', '资产负债率 (Debt-to-Asset)']
     
     fig = go.Figure()
     
@@ -102,7 +102,7 @@ def generate_radar_chart(data):
                 range=[0, 1]  # Normally these metrics range 0-1, easily visible scaling
             )),
         showlegend=True,
-        title="Four Companies Financial Comparison (Radar Chart)",
+        title="四大科技巨头核心财务指标对比分析 (Radar Chart)",
         margin=dict(l=40, r=40, t=60, b=40),
         legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5)
     )
