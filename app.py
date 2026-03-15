@@ -366,22 +366,34 @@ for trace in market_fig.data:
     trace.line.color = "#22C55E"
     trace.marker.color = "#22C55E"
 
+# Define language-specific chart titles and axes
+radar_title = "四大科技巨头核心财务指标对比分析" if lang == "CN" else "Four Companies Financial Comparison"
+market_title = "全球科技互联网市场规模趋势" if lang == "CN" else "Global Tech Internet Market Size Trend"
+
+radar_categories = {
+    "Gross Margin": "毛利率" if lang == "CN" else "Gross Margin",
+    "Net Margin": "净利率" if lang == "CN" else "Net Margin",
+    "ROE": "净资产收益率" if lang == "CN" else "ROE",
+    "Debt-to-Asset": "资产负债率" if lang == "CN" else "Debt-to-Asset Ratio"
+}
+
 for trace in radar_fig.data:
     trace.fill = "none"
     trace.line = dict(width=2.5)
-    # 动态翻译雷达图的各个维度标签 (Gross Margin -> 毛利率 (Gross Margin))
+    # Dynamically translate radar axes based on language
     if hasattr(trace, 'theta') and trace.theta is not None:
         translated_theta = []
         for t in trace.theta:
-            if "Gross Margin" in t: translated_theta.append("毛利率 (Gross Margin)")
-            elif "Net Margin" in t: translated_theta.append("净利率 (Net Margin)")
-            elif "ROE" in t: translated_theta.append("净资产收益率 (ROE)")
-            elif "Debt-to-Asset" in t: translated_theta.append("资产负债率 (Debt-to-Asset)")
+            # We match the original english string in the JSON
+            if "Gross Margin" in t: translated_theta.append(radar_categories["Gross Margin"])
+            elif "Net Margin" in t: translated_theta.append(radar_categories["Net Margin"])
+            elif "ROE" in t: translated_theta.append(radar_categories["ROE"])
+            elif "Debt-to-Asset" in t: translated_theta.append(radar_categories["Debt-to-Asset"])
             else: translated_theta.append(t)
         trace.theta = tuple(translated_theta)
 
 radar_fig.update_layout(
-    title="四大科技巨头核心财务指标对比分析 (Radar Chart)",
+    title=radar_title,
     polar=dict(
         domain=dict(x=[0.15, 0.85], y=[0.05, 0.85]),
         angularaxis=dict(tickfont=dict(size=14, family="Inter, sans-serif", color="#e0e0e0")),
@@ -391,7 +403,7 @@ radar_fig.update_layout(
 )
 
 market_fig.update_layout(
-    title="全球科技互联网市场规模趋势 (Market Size Trend)"
+    title=market_title
 )
 
 FINANCIAL_CONTEXT = json.dumps(metrics, indent=2, ensure_ascii=False)
