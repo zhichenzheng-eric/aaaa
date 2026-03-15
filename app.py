@@ -352,9 +352,11 @@ def load_financial_metrics():
 
 @st.cache_data
 def load_plotly_chart(filename):
+    """加载之前在 Layer 1 预生成的 Plotly JSON 图表"""
     chart_path = os.path.join(os.path.dirname(__file__), "charts", filename)
     with open(chart_path, "r", encoding="utf-8") as f:
-        return pio.from_json(f.read())
+        # 使用 skip_invalid 避免跨环境/版本时的模板解析错误
+        return pio.from_json(f.read(), skip_invalid=True)
 
 metrics = load_financial_metrics()
 radar_fig = load_plotly_chart("radar_chart.json")
