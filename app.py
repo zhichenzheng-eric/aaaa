@@ -367,14 +367,14 @@ for trace in market_fig.data:
     trace.marker.color = "#22C55E"
 
 # Define language-specific chart titles and axes
-radar_title = "四大科技巨头核心财务指标对比分析" if lang == "CN" else "Four Companies Financial Comparison"
-market_title = "全球科技互联网市场规模趋势" if lang == "CN" else "Global Tech Internet Market Size Trend"
+radar_title = "四大科技巨头核心财务指标对比分析" if st.session_state.lang == "中文" else "Four Companies Financial Comparison"
+market_title = "全球科技互联网市场规模趋势" if st.session_state.lang == "中文" else "Global Tech Internet Market Size Trend"
 
 radar_categories = {
-    "Gross Margin": "毛利率" if lang == "CN" else "Gross Margin",
-    "Net Margin": "净利率" if lang == "CN" else "Net Margin",
-    "ROE": "净资产收益率" if lang == "CN" else "ROE",
-    "Debt-to-Asset": "资产负债率" if lang == "CN" else "Debt-to-Asset Ratio"
+    "Gross Margin": "毛利率" if st.session_state.lang == "中文" else "Gross Margin",
+    "Net Margin": "净利率" if st.session_state.lang == "中文" else "Net Margin",
+    "ROE": "净资产收益率" if st.session_state.lang == "中文" else "ROE",
+    "Debt-to-Asset": "资产负债率" if st.session_state.lang == "中文" else "Debt-to-Asset Ratio"
 }
 
 for trace in radar_fig.data:
