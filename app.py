@@ -473,10 +473,18 @@ def call_deepseek(messages, temperature=0.7, max_tokens=2000):
 # ============================================================
 # 4. 双轨输出 Prompt 定义
 # ============================================================
+STRICT_DATA_REQ = """【核心逻辑与数据要求 - 严格遵守】
+1. **数据绝对真实**：所有引用的财务数据、产品发布、收入规模、市占率等必须 100% 真实准确，**绝不可编造、幻觉或断章取义**。
+2. **构建深度逻辑链**：严禁给出空洞结论。任何论点必须有【具体业务/产品 + 真实规模/收入 + 占比/增速】支撑。
+   - ❌ 错误示范：“微软云正将AI能力转化为强劲收入，推动其高毛利。”
+   - ✅ 正确示范：“微软 Azure 整合 OpenAI 模型为企业提供 Copilot 服务，拉动智能云业务营收突破 XXX 亿美元（同比增长 XX%），成为其 68% 高毛利率的核心驱动力。”
+
+"""
+
 TAB_PROMPTS = {
     "tab1": {
         "title": "行业概览 (Industry Overview)",
-        "prompt": """请针对 Tech Internet 行业，严格按以下结构和格式生成完整输出。所有内容用中文，数据引用需具体。
+        "prompt": STRICT_DATA_REQ + """请针对 Tech Internet 行业，严格按以下结构和格式生成完整输出。所有内容用中文，数据引用需具体。
 
 ---
 ## Report Body
@@ -537,7 +545,7 @@ TAB_PROMPTS = {
 
     "tab2": {
         "title": "行业核心财务特征 (Core Financial Characteristics)",
-        "prompt": """请针对 Tech Internet 行业，严格按以下结构和格式生成完整输出。所有内容用中文，必须引用四家公司真实数据。
+        "prompt": STRICT_DATA_REQ + """请针对 Tech Internet 行业，严格按以下结构和格式生成完整输出。所有内容用中文，必须引用四家公司真实数据。
 
 ---
 ## Report Body
@@ -597,7 +605,7 @@ TAB_PROMPTS = {
 
     "tab3": {
         "title": "四家公司财务横向比对 (Financial Comparison)",
-        "prompt": """请对 Tencent, Google, Meta, Microsoft 进行财务横向比对，严格按以下结构和格式生成完整输出。所有内容用中文，必须引用四家公司真实数据。
+        "prompt": STRICT_DATA_REQ + """请对 Tencent, Google, Meta, Microsoft 进行财务横向比对，严格按以下结构和格式生成完整输出。所有内容用中文，必须引用四家公司真实数据。
 
 ---
 ## Report Body
@@ -659,7 +667,7 @@ TAB_PROMPTS = {
     },
     "tab4": {
         "title": "行业展望与核心投资关注点 (Industry Outlook)",
-        "prompt": """请针对 Tech Internet 行业未来展望，严格按以下结构和格式生成完整输出。所有内容用中文，必须引用四家公司真实数据。数据不能单独罗列，必须嵌入分析文字中一起呈现。
+        "prompt": STRICT_DATA_REQ + """请针对 Tech Internet 行业未来展望，严格按以下结构和格式生成完整输出。所有内容用中文，必须引用四家公司真实数据。数据不能单独罗列，必须嵌入分析文字中一起呈现。
 
 ---
 ## Report Body
