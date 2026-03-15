@@ -386,13 +386,13 @@ for trace in radar_fig.data:
     # Dynamically translate radar axes based on language
     if hasattr(trace, 'theta') and trace.theta is not None:
         translated_theta = []
-        for t in trace.theta:
+        for label in trace.theta:
             # We match the original english string in the JSON
-            if "Gross Margin" in t: translated_theta.append(radar_categories["Gross Margin"])
-            elif "Net Margin" in t: translated_theta.append(radar_categories["Net Margin"])
-            elif "ROE" in t: translated_theta.append(radar_categories["ROE"])
-            elif "Debt-to-Asset" in t: translated_theta.append(radar_categories["Debt-to-Asset"])
-            else: translated_theta.append(t)
+            if "Gross Margin" in label: translated_theta.append(radar_categories["Gross Margin"])
+            elif "Net Margin" in label: translated_theta.append(radar_categories["Net Margin"])
+            elif "ROE" in label: translated_theta.append(radar_categories["ROE"])
+            elif "Debt-to-Asset" in label: translated_theta.append(radar_categories["Debt-to-Asset"])
+            else: translated_theta.append(label)
         trace.theta = tuple(translated_theta)
 
 radar_fig.update_layout(
