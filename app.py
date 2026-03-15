@@ -319,7 +319,8 @@ _L = {
 def t(key):
     # Safe fallback if lang is somehow not in dictionary
     lang = st.session_state.lang if st.session_state.lang in _L else "中文"
-    return _L[lang].get(key, key)
+    # Ensure it always returns a string to prevent formatting TypeErrors
+    return str(_L[lang].get(key, key))
 
 
 # ============================================================
