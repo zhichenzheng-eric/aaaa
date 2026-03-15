@@ -317,7 +317,9 @@ _L = {
 
 
 def t(key):
-    return _L[st.session_state.lang].get(key, key)
+    # Safe fallback if lang is somehow not in dictionary
+    lang = st.session_state.lang if st.session_state.lang in _L else "中文"
+    return _L[lang].get(key, key)
 
 
 # ============================================================
